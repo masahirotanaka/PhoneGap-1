@@ -2,12 +2,35 @@
 # PhoneGap AppsFlyer plugin for Android and iOS. 
 
 Built against Phonegap >= 3.3.x.
-## PhoneGap Build ##
-Add the following line to your config xml:
+## Setup the plugin using Monaca Cloud IDE ##
+
+1\.Add the PhoneGap AppsFlyer plugin to your project. Information about how to add/import PhoneGap/Cordova plugins can be found [here](https://docs.monaca.io/en/manual/dependencies/cordova_plugin/).
+
+2\. Add the following xml to your `config.xml` in the root directory of your `www` folder:
+```xml
+<!-- for iOS -->
+<feature name="AppsFlyerPlugin">
+  <param name="ios-package" value="AppsFlyerPlugin" />
+</feature>
 ```
-<gap:plugin name="com.appsflyer.phonegap.plugins.appsflyer" version="1.0.1" />
+```xml
+<!-- for Android -->
+<feature name="AppsFlyerPlugin">
+  <param name="android-package" value="com.appsflyer.cordova.plugin.AppsFlyerPlugin" />
+</feature>
 ```
-Add following lines to your code to be able to initialize tracking with your own AppsFlyer dev key:
+
+3\. For Android, add the following xml to your `AndroidManifest.xml`:
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+```
+4\.Add new app on AppsFlyer dashboard.
+Make sure that the value in the manifest and the value entered in the dashboard are identical.
+If you want to tracking installs for Android-Out-Of-Store Applications, please take a look [here](https://support.appsflyer.com/hc/en-us/articles/207447023-Tracking-Installs-for-Out-Of-Store-Applications).
+
+5\.Add following lines to your code to be able to initialize tracking with your own AppsFlyer dev key:
 ```javascript
 document.addEventListener("deviceready", function(){
     var args = [];
@@ -22,45 +45,9 @@ document.addEventListener("deviceready", function(){
 	window.plugins.appsFlyer.initSdk(args);
 }, false);
 ```
+6\.Test your app for [Android](https://support.appsflyer.com/hc/en-us/articles/207032136-Testing-AppsFlyer-Android-SDK-Integration-Before-Submitting-to-Google-Play) / [iOS](https://support.appsflyer.com/hc/en-us/articles/207032046-Testing-AppsFlyer-iOS-SDK-Integration-Before-Submitting-to-the-App-Store-) before submitting to the Google Play / App Store. 
 
-## Installation using CLI:
-```
-$ cordova plugin add https://github.com/AppsFlyerSDK/PhoneGap.git
-```
-Then reference `appsflyer.js` in `index.html`, after `cordova.js`/`phonegap.js`. Mind the path:
-```html
-<script type="text/javascript" src="js/plugins/appsflyer.js"></script>
-```
-## Manual installation:
-1\. Add the following xml to your `config.xml` in the root directory of your `www` folder:
-```xml
-<!-- for iOS -->
-<feature name="AppsFlyerPlugin">
-  <param name="ios-package" value="AppsFlyerPlugin" />
-</feature>
-```
-```xml
-<!-- for Android -->
-<feature name="AppsFlyerPlugin">
-  <param name="android-package" value="com.appsflyer.cordova.plugin.AppsFlyerPlugin" />
-</feature>
-```
-2\. For Android, add the following xml to your `AndroidManifest.xml`:
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-```
-3\. Copy appsflyer.js to `www/js/plugins` and reference it in `index.html`:
-```html
-<script type="text/javascript" src="js/plugins/appsflyer.js"></script>
-```
-4\. Download the source files and copy them to your project.
 
-iOS: Copy `AppsFlyerPlugin.h`, `AppsFlyerPlugin.m`, `AppsFlyerTracker.h` and `libAppsFlyerLib.a` to `platforms/ios/<ProjectName>/Plugins`
-
-Android: Copy `AppsFlyerPlugin.java` to `platforms/android/src/com/appsflyer/cordova/plugins` (create the folders)
-        
 ## Usage:
 
 #### 1\. Set your App_ID (iOS only), Dev_Key and enable AppsFlyer to detect installations, sessions (app opens), and updates.  
@@ -110,7 +97,8 @@ window.plugins.appsFlyer.sendTrackingWithEvent(eventName, eventValue);
 // window.plugins.appsFlyer.sendTrackingWithEvent(eventName, "");
 ```
 #### 4\.1 Rich In App Events Tracking API (optional)
-AppsFlyer’s rich in­app events provide advertisers with the ability to track any post­install event and attribute it to a media source and campaign.An in­app event is comprised of an event name and event parameters
+AppsFlyer’s rich in­app events provide advertisers with the ability to track any post­install event and attribute it to a media source and campaign.
+An in­app event is comprised of an event name and event parameters
 
 ```javascript
 var eventName = "af_add_to_cart";
