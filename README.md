@@ -52,45 +52,31 @@ document.addEventListener("deviceready", function(){
 
 2\. Getting started with [Monaca CLI](https://docs.monaca.io/en/manual/development/monaca_cli/).
 
-3\. If you don't have Monaca account
-
-``` $ monaca signup```
-
-If you already have monaca account
-
-``` $ monaca login```
-
-4\. Create a new project. 
+3\. Create a new project. 
 
 ```$ monaca create project-name```
 
 ```$ cd project-name```
 
-5\. Remove the directory platforms
+4\. Remove the directory platforms
 
 ```$ monaca rm -r platforms/```
 
-On some systems you may have to prefix the command with ```sudo``` because of permissions:
-
-```$ sudo rm -r platforms/```
-
 After removing the platforms/ directory add it again and choose which platform
 
-```$ monaca platform add platform-name``` or ```$ sudo monaca platform add platform-name```
+```$ monaca platform add platform-name```
 
-6\. Add the PhoneGap AppsFlyer plugin to your project
-You can add the plugin using the URL or adding the package in your project
+5\. Add the PhoneGap AppsFlyer plugin to your project
+
+You can add the plugin using the URL or adding the plugin package to your project
+
 Using the plugin URL
 
 ``` $ monaca plugin add https://github.com/monaca-plugins/com.appsflyer.phonegap.plugins.appsflyer.git``` 
 
-or 
+Using the plugin package in your project you have to create a folder ```plugins``` to your project and copy the plugin package there.
 
-```$ sudo monaca plugin add https://github.com/monaca-plugins/com.appsflyer.phonegap.plugins.appsflyer.git```
-
-Using the plugin package in your project you have to create a folder ```plugins``` in your project and copy the plugin package there.
-
-7\. Upload your project to Monaca Cloud
+7\. Upload the project to Monaca Cloud
 
 ```$ monaca upload```
 
