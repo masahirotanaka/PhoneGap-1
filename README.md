@@ -1,10 +1,9 @@
-
 # PhoneGap AppsFlyer plugin for Android and iOS. 
 
 Built against Phonegap >= 3.3.x.
 ## Setup the plugin using Monaca Cloud IDE ##
 
-1\.Add the PhoneGap AppsFlyer plugin to your project. Information about how to add/import PhoneGap/Cordova plugins can be found [here](https://docs.monaca.io/en/manual/dependencies/cordova_plugin/).
+1\. Add the PhoneGap AppsFlyer plugin to your project. Information about how to add/import PhoneGap/Cordova plugins can be found [here](https://docs.monaca.io/en/manual/dependencies/cordova_plugin/).
 
 2\. Add the following xml to your `config.xml` in the root directory of your `www` folder:
 ```xml
@@ -26,11 +25,11 @@ Built against Phonegap >= 3.3.x.
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 ```
-4\.Add new app on AppsFlyer dashboard.
+4\. Add new app on AppsFlyer dashboard.
 Make sure that the value in the manifest and the value entered in the dashboard are identical.
 If you want to tracking installs for Android-Out-Of-Store Applications, please take a look [here](https://support.appsflyer.com/hc/en-us/articles/207447023-Tracking-Installs-for-Out-Of-Store-Applications).
 
-5\.Add following lines to your code to be able to initialize tracking with your own AppsFlyer dev key:
+5\. Add following lines to your code to be able to initialize tracking with your own AppsFlyer dev key:
 ```javascript
 document.addEventListener("deviceready", function(){
     var args = [];
@@ -42,10 +41,66 @@ document.addEventListener("deviceready", function(){
         var appId = "123456789";            // your ios app id in app store
         args.push(appId);
     }
-	window.plugins.appsFlyer.initSdk(args);
+    window.plugins.appsFlyer.initSdk(args);
 }, false);
 ```
-6\.Test your app for [Android](https://support.appsflyer.com/hc/en-us/articles/207032136-Testing-AppsFlyer-Android-SDK-Integration-Before-Submitting-to-Google-Play) / [iOS](https://support.appsflyer.com/hc/en-us/articles/207032046-Testing-AppsFlyer-iOS-SDK-Integration-Before-Submitting-to-the-App-Store-) before submitting to the Google Play / App Store. 
+6\. Test your app for [Android](https://support.appsflyer.com/hc/en-us/articles/207032136-Testing-AppsFlyer-Android-SDK-Integration-Before-Submitting-to-Google-Play) / [iOS](https://support.appsflyer.com/hc/en-us/articles/207032046-Testing-AppsFlyer-iOS-SDK-Integration-Before-Submitting-to-the-App-Store-) before submitting to the Google Play / App Store. 
+
+## Setup the plugin using Monaca CLI ##
+
+1\. Install Monaca CLI. How to proceed, please take a look [here](https://github.com/monaca/monaca-cli).
+
+2\. Getting started with [Monaca CLI](https://docs.monaca.io/en/manual/development/monaca_cli/).
+
+3\. If you don't have Monaca account
+
+``` $ monaca signup```
+
+If you already have monaca account
+
+``` $ monaca login```
+
+4\. Create a new project. 
+
+```$ monaca create project-name```
+
+```$ cd project-name```
+
+5\. Remove the directory platforms
+
+```$ monaca rm -r platforms/```
+
+On some systems you may have to prefix the command with ```sudo``` because of permissions:
+
+```$ sudo rm -r platforms/```
+
+After removing the platforms/ directory add it again and choose which platform
+
+```$ monaca platform add platform-name``` or ```$ sudo monaca platform add platform-name```
+
+6\. Add the PhoneGap AppsFlyer plugin to your project
+You can add the plugin using the URL or adding the package in your project
+Using the plugin URL
+
+``` $ monaca plugin add https://github.com/masahirotanaka/PhoneGap-1.git``` 
+
+or 
+
+```$ sudo monaca plugin add https://github.com/masahirotanaka/PhoneGap-1.git```
+
+Using the plugin package in your project you have to create a folder ```plugins``` in your project and copy the plugin package there.
+
+7\. Upload your project to Monaca Cloud
+
+```$ monaca upload```
+
+8\. Build the project.
+
+```$ monaca remote build```
+
+Take a look how to build Monaca App for Android / iOS [here](https://docs.monaca.io/en/quick_start/cli/building_app/).
+
+
 
 
 ## Usage:
@@ -65,7 +120,7 @@ document.addEventListener("deviceready", function(){
         var appId = "123456789";            // your ios app id in app store
         args.push(appId);
     }
-	window.plugins.appsFlyer.initSdk(args);
+    window.plugins.appsFlyer.initSdk(args);
 }, false);
 ```
 
@@ -114,7 +169,7 @@ window.plugins.appsFlyer.getAppsFlyerUID(getUserIdCallbackFn);
 ###### Example:
 ```javascript
 var getUserIdCallbackFn = function(id) {
-	alert('received id is: ' + id);
+    alert('received id is: ' + id);
 }
 window.plugins.appsFlyer.getAppsFlyerUID(getUserIdCallbackFn);
 ```
@@ -124,7 +179,7 @@ Deep-linking). Read more: [Android](http://support.appsflyer.com/entries/6979669
 ###### Example:
 ```javascript
 document.addEventListener('onInstallConversionDataLoaded', function(e){
-	var attributionData = (JSON.stringify(e.detail));
-	alert(attributionData);
+    var attributionData = (JSON.stringify(e.detail));
+    alert(attributionData);
 }, false);
 ```
