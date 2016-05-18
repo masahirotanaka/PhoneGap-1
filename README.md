@@ -82,11 +82,11 @@ After removing the platforms/ directory add it again and choose which platform
 You can add the plugin using the URL or adding the package in your project
 Using the plugin URL
 
-``` $ monaca plugin add https://github.com/masahirotanaka/PhoneGap-1.git``` 
+``` $ monaca plugin add https://github.com/monaca-plugins/com.appsflyer.phonegap.plugins.appsflyer.git``` 
 
 or 
 
-```$ sudo monaca plugin add https://github.com/masahirotanaka/PhoneGap-1.git```
+```$ sudo monaca plugin add https://github.com/monaca-plugins/com.appsflyer.phonegap.plugins.appsflyer.git```
 
 Using the plugin package in your project you have to create a folder ```plugins``` in your project and copy the plugin package there.
 
